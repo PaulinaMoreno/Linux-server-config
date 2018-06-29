@@ -40,10 +40,10 @@ You can visit http://ec2-54-191-209-195.us-west-2.compute.amazonaws.com/ for the
 
 
 ## Create a new user named grader
+
 1. `sudo adduser grader`
 2. `nano /etc/sudoers`
-3. `touch /etc/sudoers.d/grader`
-4. `nano /etc/sudoers.d/grader`, add `grader ALL=(ALL:ALL) ALL`
+3. `nano /etc/sudoers.d/90-cloud-init-users`, add `grader ALL=(ALL:ALL) NOPASSWD: ALL`
 
 ## Update all currently installed packages
 
