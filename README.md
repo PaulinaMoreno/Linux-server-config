@@ -1,6 +1,6 @@
 # Linux Server Configuration Project
 
-Take a baseline installation of a Linux server and prepare it to host a web applications. Secure server from a number of attack vectors, install and configure a database server.
+this project take a baseline installation of a Linux server and prepare it to host a web applications. Secure server from a number of attack vectors, install and configure a database server.
 
 You can visit http://ec2-54-191-209-195.us-west-2.compute.amazonaws.com/ for the website deployed.
 
@@ -134,6 +134,7 @@ If timezone is different, reconfigure tzdata and set to UTC:
 
 
 10. Create database schema `python models.py`
+11. Upload information to de database : `python insert_info.py`
 
 ## Configure and Enable a New Virtual Host
 1. Create FlaskApp.conf to edit: `sudo nano /etc/apache2/sites-available/FlaskApp.conf`
@@ -141,8 +142,8 @@ If timezone is different, reconfigure tzdata and set to UTC:
 	
 	```
 	<VirtualHost *:80>
-		ServerName 52.24.125.52
-		ServerAdmin qiaowei8993@gmail.com
+		ServerName 
+		ServerAdmin elizabeth.moreno.aguilera@gmail.com
 		WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
 		<Directory /var/www/FlaskApp/FlaskApp/>
 			Order allow,deny
