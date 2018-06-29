@@ -132,7 +132,7 @@ If timezone is different, reconfigure tzdata and set to UTC:
 	
 	```
 	<VirtualHost *:80>
-		ServerName 
+		ServerName 54.191.209.195
 		ServerAdmin elizabeth.moreno.aguilera@gmail.com
 		WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi
 		<Directory /var/www/FlaskApp/FlaskApp/>
