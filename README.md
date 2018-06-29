@@ -4,23 +4,10 @@ this project take a baseline installation of a Linux server and prepare it to ho
 
 You can visit http://ec2-54-191-209-195.us-west-2.compute.amazonaws.com/ for the website deployed.
 
-## Tasks
-1. Launch your Virtual Machine with your Udacity account
-2. Follow the instructions provided to SSH into your server
-3. Create a new user named grader
-4. Give the grader the permission to sudo
-5. Update all currently installed packages
-6. Change the SSH port from 22 to 2200
-7. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
-8. Configure the local timezone to UTC
-9. Install and configure Apache to serve a Python mod_wsgi application
-10. Install and configure PostgreSQL:
-	- Do not allow remote connections
-	- Create a new user named catalog that has limited permissions to your catalog application database
-11. Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
-
 ## Launch Virtual Machine
+
   Amazon Lightsail for this project
+  
 ## Instructions for SSH access to the instance
 1 Download Private Key (Private key in : "Notes to Reviewer")
 
@@ -88,6 +75,7 @@ If timezone is different, reconfigure tzdata and set to UTC:
 `sudo dpkg-reconfigure tzdata`
 
 ## Install and configure Apache to serve a Python mod_wsgi application
+
 1. Install Apache `sudo apt-get install apache2`
 2. Install mod_wsgi `sudo apt-get install python-setuptools libapache2-mod-wsgi`
 3. Restart Apache `sudo service apache2 restart`
@@ -103,12 +91,12 @@ If timezone is different, reconfigure tzdata and set to UTC:
 	postgres=# CREATE DATABASE catalog;
 	postgres=# CREATE USER catalog;
 	```
-5. Set password for user catalog
+6. Set password for user catalog
 	
 	```
 	postgres=# ALTER USER catalog WITH PASSWORD 'catalog';
 	```
-6. Grant permission to "catalog" user to "catalog" application database
+7. Grant permission to "catalog" user to "catalog" application database
 	
 	```
 	postgres=# GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
@@ -125,18 +113,20 @@ If timezone is different, reconfigure tzdata and set to UTC:
 8. Edit all python files with `engine = create_engine('sqlite:///somedatabase.db')` and change to `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`
 9. Install package needed to install and run the catalog application.
         
-	sudo apt-get install python-dev
+`       sudo apt-get install python-dev
 	sudo apt-get install python-psycopg2
 	sudo apt-get install python-pip
 	sudo pip install flask-uploads
 	sudo pip install flask-seasurf
-	sudo pip install httplib2
+	sudo pip install httplib2`
 
 
 10. Create database schema `python models.py`
 11. Upload information to de database : `python insert_info.py`
 
 ## Configure and Enable a New Virtual Host
+*(Reference: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+
 1. Create FlaskApp.conf to edit: `sudo nano /etc/apache2/sites-available/FlaskApp.conf`
 2. Add the following lines of code to the file to configure the virtual host. 
 	
@@ -160,6 +150,7 @@ If timezone is different, reconfigure tzdata and set to UTC:
 	</VirtualHost>
 	```
 3. Enable the virtual host with the following command: `sudo a2ensite FlaskApp`
+4. Disable default host: `sudo a2dissite 000-default`
 
 ## Create the .wsgi File
 1. Create the .wsgi File under /var/www/FlaskApp: 
@@ -182,7 +173,4 @@ If timezone is different, reconfigure tzdata and set to UTC:
 	```
 
 ## Restart Apache
-1. Restart Apache `sudo service apache2 restart `
-
-## References:
-https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+Restart Apache `sudo service apache2 restart `
