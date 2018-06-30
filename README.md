@@ -1,6 +1,6 @@
 # Linux Server Configuration Project
 
-this project take a baseline installation of a Linux server and prepare it to host a web applications. Secure server from a number of attack vectors, install and configure a database server.
+This project take a baseline installation of a Linux server and prepare it to host a web applications. Secure server from a number of attack vectors, install and configure a database server.
 
 You can visit http://ec2-54-191-209-195.us-west-2.compute.amazonaws.com/ for the website deployed.
 
